@@ -1,0 +1,34 @@
+.catalogue-container{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+.filtre{
+    margin: auto;
+    padding: 0;
+    width: 100%;
+   
+    
+}
+.ordre{
+    margin: auto;
+}
+#oeuvre_filter_order{
+    width: 100%;
+}
+#oeuvre_filter_recherche{
+    text-align: center;
+    margin: auto;
+    width: 10rem;
+}
+
+@media (min-width: 801px) and (max-width: 1024px) {
+
+
+    
+}
+

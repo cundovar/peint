@@ -1,0 +1,134 @@
+*{
+    padding: 0;
+    margin: 0;
+    color: #b6b0b0;
+}
+.img300{
+     width: 50px; 
+    height: 50px; 
+
+}
+
+html,body{
+    height: 100%;
+    position: relative;
+}
+
+.contenantProfil:after{
+    content: "";
+    display: block;
+
+}
+h3{
+    margin-top: 2rem;
+}
+.fil{
+    margin-top: 1rem;
+
+ }
+  
+.ariane{
+    margin-left: 250px;
+    margin-top: 3rem;
+}
+.colorYellow{
+    color: rgb(208, 157, 38);
+}
+.colorGreen{
+    color: rgb(0, 255, 136);
+}
+.colorRed{
+    color: rgb(206, 92, 64);
+}
+.colorBlue{
+    color: rgb(118, 118, 209);
+}
+.colorBlue2{
+    color: #1DA1F2;
+}
+.colorGreen2{
+    color:#36A61A;
+}
+body {
+    /* background-color: lightgray; */
+    background-color: black;
+    color: white;
+    margin-bottom: 60px;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to left, #333, #333 70%, rgb(97, 96, 96) 35%, rgb(44, 42, 42) 75%,rgb(0, 0, 0))30%;
+    overflow-x: hidden;
+   
+   
+}
+.commande{
+    width: 50%;
+    
+    margin: auto;
+    text-align: center;
+    border: 1px solid rgb(157, 57, 219);
+    margin-top: 2rem;
+    padding: 2rem;
+    border-radius: 15px;
+}
+/* ****mention legal******* */
+
+
+.mentionLegal{
+    width: 50%;
+    text-align: center;
+    margin: 2rem;
+    padding: 2rem;
+    height: 100%;
+   margin-left: 25%;
+   border: solid 2px coral;
+   border-radius: 20px;
+}
+.mentionLegal h3{
+    margin-bottom: 3rem;
+}
+.mentionLegal p{
+    margin-bottom: 2rem;
+}
+
+p{
+    font-size: 14px;
+}
+
+
+
+@media screen and (max-width: 600px)
+{
+    body{
+        font-size: 1.8rem;
+    }
+    h1 {
+        font-size: 2.5em;
+        }
+     h3{
+        font-size: 2.1rem;
+     }   h5{
+        font-size: 2rem;
+     }
+
+     p{
+        font-size: 2rem;
+     }
+   
+     .btn{
+        font-size: 1.8rem;
+     }
+     input, select, textarea {
+        font-size: 100%;
+        }
+        
+       
+        .mentionLegal{
+            width: 100%;
+            margin: 1rem 0 1rem 0;
+            margin-left: 0;
+        }
+       
+        
+}
+

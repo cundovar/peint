@@ -1,0 +1,22 @@
+.contactF{
+    margin: 5rem 30rem 5rem 30rem;
+    
+}
+#submitForm{
+    margin: 2rem 0 0 0;
+}
+
+@media screen and (max-width: 1024px)
+{
+    .contactF{
+        margin:10rem 5rem 0 5rem;
+       
+        height: 100%;
+       
+    }
+    
+    .form-group{
+        margin-bottom: 4rem;
+    }
+}
+

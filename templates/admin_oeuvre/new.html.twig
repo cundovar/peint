@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Oeuvres
+{% endblock %}
+
+{% block body %}
+	<h1>ajouter</h1>
+
+
+	<div class="col-md-6 mx-auto">
+
+
+		{{ form_start(form) }}
+
+		<div class="row">
+			<div class="col-md-6">
+				{{ form_row(form.titre) }}
+
+
+			</div>
+
+			<div class="col-md-6">
+				{{ form_row(form.prix) }}
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-md-6">
+				{{ form_row(form.stock) }}
+			</div>
+			<div class="col-md-6">
+				{{ form_row(form.categorie) }}
+			</div>
+
+
+		</div>
+		<div class="col-md-12 mx-auto  ">
+				{{ form_row(form.matiere) }}
+
+		</div>
+
+		<div class="row mx-auto">
+			<div class="col-md-6">
+			{{ form_row(form.description) }}
+			</div>
+			<div class="col-md-6">
+				{{ form_row(form.dimention) }}
+			</div>
+
+		</div>
+
+
+		{{ form_row(form.image) }}
+		<div id="zone" class="text-center"></div>
+		<input type="submit" value="Ajouter" class="btn btn-success col-12 mt-3">
+
+		{{ form_end(form) }}
+		{# balise fermante </form> #}
+
+
+	</div>
+
+
+	{# 
+			    <input type="submit" value="Ajouter" class="btn btn-success col-12 mt-3">
+			    <button type="submit"  class="btn btn-success col-12 mt-3">Ajouter</button> 
+			    #}
+
+{% endblock %}
+
+{% block javascripts %}
+
+	{{ encore_entry_script_tags('script') }}
+
+	<script>
+
+
+		let zone = document.getElementById('zone')
+function loadFile(event) {
+console.log("test");
+
+$("#zone").html("");
+let image = document.createElement("img");
+image.setAttribute("src", URL.createObjectURL(event.target.files[0]));
+image.setAttribute("class", "img300");
+
+zone.append(image);
+
+
+}
+	</script>
+
+{% endblock %}

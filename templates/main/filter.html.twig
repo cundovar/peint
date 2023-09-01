@@ -1,0 +1,26 @@
+
+				
+					
+				<div class="filter2">
+
+						 <div class="oeuvre">
+              	 {% for oeuvre in oeuvres  %}
+              
+                 {# <p>{{ oeuvre.titre}} </p> #}
+              			{% if oeuvre.image %}
+                  <div class="image1">
+                    <a href=" {{ path('app_oeuvre_show', {'id': oeuvre.id}) }}">	<img src="{{ asset('images/oeuvre/' ~ oeuvre.image ) }}" alt="" class ="img300"></a>
+                    </div>
+                     {% endif %}
+                     {% endfor %}  
+            </div>
+
+
+						<p>{{ chambre.prix }}
+							€</p>
+
+					</div>
+					{% endfor %}
+				</div>
+
+			

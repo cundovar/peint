@@ -1,0 +1,97 @@
+.bodyRegister{
+    width: 100%;
+    height: 100%;
+    /* background-color: brown; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.connect h1{
+    margin:3rem;
+    text-align: center;
+}
+.formconnect{
+    margin-bottom: 2rem;
+    text-align: end;
+    display: flex;
+    flex-direction: column;
+    
+}
+.formconnect div label{
+    align-self: flex-start;
+} 
+.connect2{
+    background-color: rgb(94, 94, 121);
+    padding: 3rem;
+    /* width: 100%; */
+    border-radius: 20px;
+}
+.connect3{
+    margin:1rem 0 1rem 0;
+    border-radius: 15px;
+    /* background-color: green; */
+    text-align: center;
+    
+}
+
+.connect4{
+    text-align: center;
+    border-radius: 15px;
+    background-color: blueviolet;
+}
+
+.connect5{
+    background-color: rgb(77, 80, 238);
+    margin-top: 2rem;
+    text-align: center;
+    box-shadow: 1px 1px 1px black;
+}
+.connect5:hover{
+    background-color: rgb(238, 77, 77);
+    border-radius: 15px;
+
+}
+
+#connexion{
+    text-align: center;
+    margin: 2rem;
+}
+
+.inputRegister{
+    border-radius: 15px;
+    margin-left: 1rem;
+}
+
+
+/* responsive */
+@media screen and (min-width: 781px) and (max-width:1024px)
+{
+    .connect{
+        width: 50%;
+        margin: auto;
+        height: 50%;
+
+    }
+}
+@media screen and (max-width: 780px)
+{
+    .bodyRegister{
+        align-items: flex-start;
+        font-size: 2.5rem;
+    }
+    .connect{
+        width: 100%;
+        /* height: 100%; */
+    }
+    .connect2{
+    width: 100%;
+    /* height: 100%; */
+}
+.form-control{
+    font-size: 2.5rem;
+}
+
+    
+}
+
+

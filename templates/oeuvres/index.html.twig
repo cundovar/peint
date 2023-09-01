@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Oeuvres index{% endblock %}
+
+{% block body %}
+    <h1>Oeuvres index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Prix</th>
+                <th>Image</th>
+                <th>categorie</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+        {# {% if oeuvre is defined %}
+        {% if oeuvres is defined %} #}
+        {% for oeuvre in oeuvres %}
+            <tr>
+                <td>{{ oeuvre.id }}</td>
+                <td>{{ oeuvre.titre }}</td>
+                <td>{{ oeuvre.prix }}</td>
+                <td>{{ oeuvre.image }}</td>
+                <td>
+                     <td>{{ oeuvre.categorie }}</td>
+                    <a href="{{ path('app_oeuvres_show', {'id': oeuvre.id}) }}">show</a>
+                    <a href="{{ path('app_oeuvres_edit', {'id': oeuvre.id}) }}">edit</a>
+                </td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        {# {% endif %}
+        {% endif %} #}
+        </tbody>
+    </table>
+
+
+
+ 
+
+{% endblock %}

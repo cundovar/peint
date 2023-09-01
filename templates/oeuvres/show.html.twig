@@ -1,0 +1,227 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Oeuvres
+{% endblock %}
+
+{% block body %}
+
+	<style>
+
+		@media screen and(max-width:800px) {}
+	</style>
+
+
+	<nav aria-label="breadcrumb" class="fil ariane">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="{{path('acceuil')}}">Accueil</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">oeuvre</li>
+		</ol>
+	</nav>
+	<div class="containerShow">
+		<div
+			class="imgShow">
+			{# {{ oeuvre.image }} #}
+			<img src="{{ asset('images/oeuvre/' ~ oeuvre. image ) }}" data-target="#modal2" data-toggle="modal" alt="art digital et peinture de facundo varas street-art,portait paysage urbain hstoire" class="img400">
+		</div>
+
+
+		<div class="modal" id="modal2" role="filter">u
+			<div class="modal-content">
+				<div class="modal-close ">
+					<a href="" class="btn btn-close" role="buttom" data-dismiss="filter"></a>
+				</div>
+				<div class="modal-header">
+					<p>loupe</p>
+				</div>
+				<div class="modal-body">
+					<img src="{{ asset('images/oeuvre/' ~ oeuvre. image ) }} " id="imgShow">
+
+					<div id="loupe">
+						<img src="{{ asset('images/oeuvre/' ~ oeuvre. image ) }}" id="imgLoupe">
+					</div>
+
+
+				</div>
+				<div class="modal-footer">
+					<a href="" class="btn btn-close" role="buttom" data-dismiss="filter"></a>
+
+				</div>
+			</div>
+		</div>
+
+
+		<div
+			class="contenantShow">
+			{# {{ oeuvre.id }} #}
+			<div class="contenantShow1">
+				<h3>
+					{{ oeuvre.titre }}</h3>
+				<p>
+					Prix :
+					{{ oeuvre.prix }}€</p>
+				<p>
+					Dimension :
+					{{ oeuvre.dimention }}</p>
+
+				<p>
+					Catégorie :
+					{{oeuvre.categorie.nom}}
+				</p>
+				<p>
+					Matière :
+					{% if oeuvre.oeuvreMatiere|length > 0 %}
+						{% for oeuvreMatiere in oeuvre.oeuvreMatiere %}
+							{{ oeuvreMatiere.matiere.nom|capitalize }}
+							{% if not loop.last %},
+							{% endif %}
+						{% endfor %}
+					{% else %}
+						<span class="text-danger fst-italic">N.R</span>
+					{% endif %}
+
+				</p>
+			</div>
+
+			{# <div id="buton"> #}
+			{# <button class="buton"> <a href="{{path('app_panier',{'id':oeuvre.id} )}} ">ajouter au panier</a></button>/ #}
+			{# </div> #}
+
+				<div class="panier"> <div class="text-center-col-md-3">
+					{% if oeuvre.stock %}
+						{# <h2 class="my-3 text-success" >ajouter au panier</h2> #}
+						<p>Disponibilité :
+							<spam class="colorGreen2">en stock</span>
+						</p>
+
+						<form action="{{ path('panier_ajouter')}} " method="post">
+
+							{% if oeuvre.stock > 10 %}
+								{% set quantity = 10 %}
+							{% else %}
+								{% set quantity = oeuvre.stock %}
+							{% endif %}
+
+
+							<select name="quantity" id="showSelect" class="form-select ">
+								{% for i in 1.. quantity %}
+
+									{# {% dump(quantity)%}  #}
+
+									<option value="{{i}}">{{i}}</option>
+								{% endfor %}
+							{% else %}
+								<h4 class="text-danger fst-italic">rupture de stock</h4>
+							{% endif %}
+							<input type="hidden" name="oeuvre" value="{{oeuvre.id}} ">
+
+							<div class="col-12">
+								<button class="btn btn-primary " type="submit" value="ajouter au panier">ajouter au panier</button>
+							</div>
+						</div>
+
+					</select>
+				</form>
+			</div>
+
+
+		</div>
+
+
+		<div class="paragraphe">
+			<p>
+				Description :</p>
+			<p>
+				{{oeuvre.description}}
+			</p>
+		</div>
+	</div>
+	<h3 class="colorYellow" id="h3Commentaire">commentaires</h3>
+	<div class="commentaire">
+		<div class="containReact">
+
+			<h3>commentaire react</h3>
+			{% if app.user %}
+				<div class="reactComents">
+					<comments-show data-post="{{oeuvre.id}}" data-user="{{app.user ? app.user.id :0}}"></comments-show>
+				</div>
+			{% else %}
+				<p>
+					Veuillez vous connecter pour écrire et voir les commentaires</p>
+			{% endif %}
+		</div>
+
+		{# <div class="phpComment">
+								            <h3 >commentaire php</h3>
+								               
+								        {% if app.user %}
+								
+								            {{ form_start(formComment) }}
+								                {{ form_row(formComment.comment) }} 
+								                <input type="submit" value="envoyer" class="btn btn-success col-3 mt-3" > 
+								             {{ form_end(formComment) }}
+								
+								        {% else %}
+								            <p class="colorBlue2">Veuillez vous 
+								                <a href="{{ path('app_login') }}" class="colorRed">connecter</a>
+								             ou vous 
+								                <a href="{{ path('app_register') }} " class="colorRed">inscrire</a>
+								             pour déposer votre message</p>
+								        {% endif %}
+								
+								
+								
+								
+								               {% for commentaire in commentaires %}
+								            <div class="commentTotal">
+								
+								                <div >
+								                    
+								                    <div class="">
+								                        <p class="fst-italic">{{ commentaire.dateAt|date("d/m/Y H:i:s") }}</p>
+								                    </div>  
+								                    <br>
+								                    <div class="">
+								                        <p>{{ commentaire.user.prenom }} a ecrit...</p>
+								                    </div>
+								                    <br>
+								                </div>
+								                <div class="comment">
+								                    <p>{{ commentaire.comment }}</p>
+								                </div>
+								                <hr>
+								            </div>
+								        {% else %}
+								           <p class="text-info">Soyez le premier à laisser votre avis</label></p>
+								        {% endfor %}
+								            
+								
+								        {% for notification in app.flashes('success') %}
+								            <div class="text-center fst-italic text-success">
+								                {{ notification }}
+								            </div>
+								        {% endfor %} 
+								        {# {{form(formComment)}} #}
+
+		{# 
+							
+							        </div> #}
+	</div>
+
+
+	{# <a href="{{ path('app_oeuvres_index') }}">back to list</a> #}
+
+{# <a href="{{ path('app_oeuvres_edit', {'id': oeuvre.id}) }}">edit</a> #}
+
+
+	{# {{ include('oeuvres/_delete_form.html.twig') }} #}
+
+{% endblock %}
+
+
+{% block javascripts %}
+	{{ encore_entry_script_tags('comments') }}
+
+	{{ encore_entry_script_tags('script') }}
+{% endblock %}

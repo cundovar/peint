@@ -1,0 +1,126 @@
+
+.containerPanier{
+    /* margin-top: 30rem; */
+    display: flex;
+    width: 80%;
+    /* background-color: rgb(70, 66, 66); */
+    margin: auto;
+   flex-wrap: wrap;
+    /* margin-top: 5rem; */
+    /* border: 1px solid white; */
+    /* border-radius: 15px; */
+    padding: 2rem;
+    justify-content: space-around;
+    /* border: 1px solid rgb(226, 56, 113); */
+    /* box-shadow: 0 0 0.5em 0 var(--clr-neon) */
+    border-bottom:1px solid white ;
+   
+}
+#debutPanier{
+    margin-top: 3rem;
+    margin-right: 15rem;
+    align-items: flex-end;
+
+
+}
+
+
+.contenantPanier{
+    display: flex;
+    /* margin: auto; */
+     /* margin-top: 5rem; */
+    width: 60%;
+    justify-content: space-between;
+    align-items: center;
+    /* border: solid 1px wheat; */
+    /* flex-wrap: wrap; */
+    /* padding: 3rem; */
+    
+    /* background-color: blueviolet; */
+    
+    /* align-items: center; */
+    /* height: 100%; */
+}
+.contenantPanier1 p{
+margin-bottom: 0;
+}
+
+.butttonPanier{
+    display: flex;
+    justify-content: center;
+    /* width: 40%; */
+    
+    /* margin: 0; */
+}
+.imgPanier{
+    width:10rem ;
+}
+.finPanier{
+    display: flex;
+    /* flex-direction: column-reverse; */
+    /* align-items: flex-start; */
+    /* border: 1px wheat solid; */
+    justify-content: space-between;
+    padding: 3rem;
+    margin: auto;
+    background-color: #756D5E;
+    width: 60%;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    
+    /* margin-left: 15rem; */
+}
+.finPanier a{
+    margin: 0;
+}
+.supCommand{
+    margin: 1rem;
+}
+
+.montantTotal p{
+    margin-bottom: 0;
+    margin-top: 1.6rem;
+    
+    
+    
+}
+/* responsive */
+@media screen and (max-width: 1024px)
+{
+    .contenantPanier{
+        flex-direction: column;
+        width: 30%;
+    }
+    .finPanier{
+        width: 100%;
+    }
+    .containerPanier{
+        width: 100%;
+        /* justify-content: space-between; */
+    }
+    .imgPanier{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30%;
+    }
+    .tt{
+        display: none;
+    }
+    .butttonPanier{
+      margin-top: 2rem;
+      flex-direction: column;
+    }
+    .montantTotal{
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 0;
+    }
+    .montantTotal p{
+        margin-top: 0;
+    }
+    
+}
+
+

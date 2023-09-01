@@ -1,0 +1,128 @@
+<nav>
+
+   <div class="nav">
+       <div class="nav1">
+          <h1 ><a href="{{path('acceuil')}}" class="facundo" > facundo varas </a></h1>
+          <h2 class="colorRed"> <i>art work</i></h2>
+       </div>
+   <div class="deco">
+       
+   </div>
+ 
+       {% if app.user %}
+         <div class="bdd">
+     
+            <div class="nameUser colorRed"> 
+               {% if is_granted('ROLE_ADMIN') %}
+                   BackOffice
+                {% endif %}
+              <a href="{{path('app_profil')}} "> {{app.user.prenom}} profil </a>
+            </div>
+
+            <div class="panierDeconnect">
+            
+           
+             <div class="deconnection">
+                  <a href="{{ path('app_logout') }}">déconnexion</a>
+             </div> 
+               <div class="panierImg">
+                   <a href="{{path('app_panier')}} "><img src="{{asset('images/oeuvre/panier3.png')}}" alt="" class="panierImg2"></a>
+             </div>
+         </div>
+            
+           {% else %}
+             
+           <div class="connection">
+            
+
+             <div class="connectInscript">
+
+                 <div class="connection1">  
+                     <a href="{{ path('app_login') }}">connexion</a> 
+                 </div>
+                   /
+                 <div class="connection2">
+                    <a href="{{path('app_register')}} ">inscription</a> 
+                </div>
+                <div class="panierImg">
+                <a href="{{path('app_panier')}} "><img src="{{asset('images/oeuvre/panier3.png')}}" alt="" class="panierImg2"></a>
+             </div>
+              </div>
+
+          </div>
+       </div>     
+           
+         {% endif %}
+         
+   </div>
+     
+</div>
+  
+  
+  
+  
+   
+
+<a id="link" href="#"><span id="burger1"></span></a>
+
+    <div class="menu" style="width=70% !important" >
+      	  <span class="titleHome"><a href="{{path('acceuil')}}" > accueil </a></span>
+          <span class="titleHome"><a href="{{path('peinture')}}" > peinture </a></span>
+          <span class="titleHome"><a href="{{path('artDigital')}}" > digital</a> </span>
+          <span class="titleHome"><a href="{{path('catalogue')}}" > catalogue</a> </span>
+          <span class="titleHome"><a href="{{path('app_form_contact')}} "> contact</a> </span>
+          <span class="titleHome"><a href="{{path('acceuil',{'_fragment':"ancre"} )}}" >à propos</a> </span>
+         
+         
+       {% if app.user  %}
+               <span class="titleHome"><a href="{{path('commande')}}">commandes</a> </span>
+       {% endif %}
+       {% if is_granted('ROLE_ADMIN') %}
+          <div class="menuback"style="z-index: 3000;" >
+               {% include "menuDeroulantBack.html.twig" %}
+          </div>
+               
+        
+    </div>
+      
+      
+      {% endif %}
+
+
+</nav>
+
+{% block javascripts %}
+        
+       
+            {{ encore_entry_script_tags('app') }}
+            <script>
+
+             let link = document.getElementById('link')
+             let burger = document.getElementById('burger1')
+             let menu = document.querySelector('.menu')
+  
+             link.addEventListener('click', function(e) {
+                e.preventDefault()
+             burger.classList.toggle('open')
+             menu.classList.toggle('responsive')
+             })
+              
+            
+            </script>
+                   <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KH2LH77JF7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KH2LH77JF7');
+</script>
+
+           
+        
+           
+           
+          
+        {% endblock %}
+

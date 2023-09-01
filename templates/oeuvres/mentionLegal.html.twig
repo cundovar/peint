@@ -1,0 +1,170 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="mentionLegal">
+     <h3 class='colorYellow'>mention legal</h3>
+         <p class="colorBlue">   
+ 
+             Le site varascundo.com est édité par :
+
+Facundo Varas, micro-entreprise située à Paris
+
+Le Directeur de Publication est Facundo Varas, qui assure également la maintenance et l’administration.
+         </p>
+<p class="colorYellow">
+Le site varascundo.com est hébergé par :
+
+
+OVH, société par actions simplifiée, immatriculée sous le SIREN 424761419, est en activité depuis 22 ans. Localisée à ROUBAIX (59100),
+</p>
+<p class="colorRed">
+Déclaration de confidentialité
+ prête une attention particulière à vos données personnelles, et s’engage de par ses conditions d’utilisation à ne transmettre, vendre ou céder à un tiers aucune information personnelle vous concernant. Veuillez également consulter notre Politique concernant la gestion des cookies
+</p>
+<p class="colorBlue">
+Conformément à la loi « Informatique et Libertés » N° 78-17 du 6 Janvier 1978, vous bénéficiez d’un droit d’accès, de rectification et d’opposition. Pour l’exercer, merci de bien vouloir nous contacter par l’intermédiaire du formulaire de contact.
+
+         </p>
+
+         <div class="response">
+
+     
+  <i id="cloud13" class="colorRed">art</i>
+
+  <i id="cloud14" class="colorRed">art</i>
+
+  <i id="cloud15" class="colorBlue">peinture</i>
+
+  <i id="cloud16" class="colorGreen">vision</i>
+
+  <i id="cloud17" class="colorYellow">digital</i>
+
+  <i id="cloud18" class="colorBlue">image</i>
+ 
+  
+ 
+      
+</div>
+<style>
+.response{
+    height: 50rem;
+   margin-top: 10rem;
+     position: relative;
+     overflow: hidden;
+     /* border-bottom:solid 1px black; */
+   
+}
+#cloud13 {
+    z-index: 900;
+    position: absolute;
+    left: -200px;
+    top: 0.5em;
+    height: 10rem;
+    width: 80px;
+    
+    animation: moveCloud 16s linear infinite;
+    -webkit-animation: moveCloud 16s linear infinite;
+    -moz-animation: moveCloud 16s linear infinite;
+    background-color: #22ff00;
+    font-size: 9em;
+  }
+  #cloud14 {
+    z-index: 772;
+    position: absolute;
+    left: -5px;
+    top: 0.2em;
+    height: 20rem;
+width: 30px;
+   
+    animation: moveCloud 25s linear infinite;
+    font-size: 15em;
+    -webkit-animation: moveCloud 25s linear infinite;
+    -moz-animation: moveCloud 25s linear infinite;
+    background-color: #ffe600;
+  }
+  #cloud15 {
+    z-index: 551;
+    position: absolute;
+    left: 0px;
+    bottom: 3em;
+    height: 30px;
+width: 70px;
+    
+    animation: moveCloud 10s linear infinite;
+    -webkit-animation: moveCloud 10s linear infinite;
+    -moz-animation: moveCloud 10s linear infinite;
+    font-size: 5em;
+    background-color: #ff05c1;
+    
+    
+  }
+  #cloud16 {
+    z-index: 552;
+    position: absolute;
+    left: -15px;
+    /* bottom: 2.5rem; */
+    height: 30px;
+    width: 30px;
+   
+    animation: moveCloud 15s linear infinite;
+    -webkit-animation: moveCloud 15s linear infinite;
+    -moz-animation: moveCloud 15s linear infinite;
+    background-color: #fd0404;
+    font-size: 9em;
+  }
+  #cloud17 {
+    z-index: 266;
+    position: absolute;
+    left: -200px;
+    top: 0.5em;
+
+    height: 30px;
+width: 30px;
+    animation: moveCloud 20s linear infinite;
+    -webkit-animation: moveCloud 20s linear infinite;
+    -moz-animation: moveCloud 20s linear infinite;
+    font-size: 21em;
+    color: #2ed3e6;
+  }
+  #cloud18 {
+    z-index: 772;
+    position: absolute;
+    left: -30px;
+    /* bottom: 3em; */
+    width: 40px;
+    height: 80px;
+   
+    animation: moveCloud 18s linear infinite;
+    -webkit-animation: moveCloud 18s linear infinite;
+    -moz-animation: moveCloud 18s linear infinite;
+    background-color: rgb(17, 139, 226);
+    font-size: 10em;
+  }
+
+   @keyframes moveCloud {
+    0% {
+      transform: translate(1000px);
+    }
+    100% {
+      transform: translate(-1000px);
+    }
+  }
+  @-webkit-keyframes moveCloud {
+    0% {
+      transform: translate(1000px);
+    }
+    100% {
+      transform: translate(-1000px);
+    }
+  }
+  @-moz-keyframes moveCloud {
+    0% {
+      transform: translate(1000px);
+    }
+    100% {
+      transform: translate(-1000px);
+    }
+  }
+  </style>
+
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %} 
+
+{# {{% block title %}New Oeuvres{% endblock %} } #}
+
+{% block body %}
+    <h1>ajouter</h1>
+
+    {{ include('oeuvres/_form.html.twig') }}
+
+    <a href="{{ path('app_oeuvres_index') }}">back to list</a>
+{% endblock %}

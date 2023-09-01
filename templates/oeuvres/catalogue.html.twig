@@ -1,0 +1,136 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Catalogue
+{% endblock %}
+
+{% block h1 %}Catalogue
+{% endblock %}
+
+
+{# {% block body %}
+
+y
+	
+
+{% endblock %} #}
+
+
+{# {% if condition %}
+
+	{% else %}
+
+{% endif %} #}
+
+
+{% block body %}
+	<style>
+		#oeuvre_filter_categories {
+			display: flex;
+			margin-bottom: 2rem;
+
+
+		}
+		.ligneCata{
+			margin: auto !important;
+		}
+
+		#oeuvre_filter_categories label ,#oeuvre_filter_matieres label {
+			margin-left: 0.5rem;
+			margin-right: 0.5rem;
+
+		}
+		.orderCata{
+			margin-top: 1rem;
+			margin-bottom: 1rem;
+		}
+
+	</style>
+
+	<div class="catalogue-container">
+
+
+		<div class="row ">
+			{{ form_start(formFilter) }}
+
+			{{form_row(formFilter.recherche)}}
+
+			<div class="row filtre">
+
+				<div class="col-md-6">
+					{{form_row(formFilter.min)}}
+				</div>
+
+
+				<div class="col-md-6">
+					{{form_row(formFilter.max)}}
+				</div>
+			</div>
+
+		</div>
+
+		<div class="row">
+
+			<div class="col-md-6">
+				{{form_row(formFilter.categories)}}
+			</div>
+	
+			<div >
+
+
+				{{form_row(formFilter.matieres)}}
+
+
+			</div>
+		</div>
+
+		<div class="ordre">
+			{{form_row(formFilter.order)}}
+		</div>
+
+		<input type="submit" value="Filtrer" class="btn btn-dark col-6 mt-2">
+
+		{{form_end(formFilter)}}
+	</div>
+
+
+	{% if oeuvres %}
+
+
+		<div class="oeuvre scroll">
+
+			{% for oeuvre in oeuvres %}
+
+				<div class="oeuvreSousImage">
+					<div class="totalus">
+						<div class="image1" style="width: 100%; ">
+
+
+							<a href=" {{ path('app_oeuvre_show', {'id': oeuvre.id}) }}">
+								<img src="{{ asset('images/oeuvre/' ~ oeuvre.image ) }}" alt="art digital de facundo varas street-art,portait paysage urbain hstoire" class="img300"></a>
+						</div>
+					</div>
+					<div class="sousImage">
+						<div class="titreSousImage">
+							<p class="colorYellow">{{oeuvre.titre}}
+							</p>
+						</div>
+						<div class="buttonSousImage">
+							<button>
+								<a href=" {{ path('app_oeuvre_show', {'id': oeuvre.id}) }}">
+									En savoir plus</a>
+							</button>
+						</div>
+					</div>
+				</div>
+
+			{% endfor %}
+
+		</div>
+
+
+	{% else %}
+		<h4 class="text-danger fst-italic text-center mt-3">Aucun produit pour le moment</h4>
+	{% endif %}
+
+
+{% endblock %}

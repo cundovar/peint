@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}inscription{% endblock %}
+
+{% block body %}
+    {# {% for flash_error in app.flashes('verify_email_error') %} #}
+        {# <div class="alert alert-danger" role="alert">{{ flash_error }}</div> #}
+    {# {% endfor %} #}
+<div class="bodyRegister">
+ <div class="connect">
+    <h1>inscription</h1>
+        <div class="connect2">
+        <div class="formconnect">
+    {{ form_start(registrationForm) }}
+    </div>
+    <div class="formconnect">
+        {{ form_row(registrationForm.email) }}
+         </div>
+        <div class="formconnect" >
+         {{ form_row(registrationForm.prenom) }}
+          </div>
+         <div class="formconnect">
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+        {# {{ form_row(registrationForm.agreeTerms) }} #}
+         </div>
+        <div class="formconnect" >
+        <button type="submit" class="btn">inscrit toi</button>
+    {{ form_end(registrationForm) }} 
+        </div>
+    </div>
+
+ </div>
+</div>
+{% endblock %}

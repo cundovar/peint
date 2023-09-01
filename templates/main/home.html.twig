@@ -1,0 +1,212 @@
+{% extends "base.html.twig"%}
+{% block body %}
+	{% include "bandeauImg.html.twig" %}
+	<style>
+		.scroll {
+			opacity: 0;
+			transform: translate(-30px);
+		}
+		.scroll-visible {
+			opacity: 1;
+			transform: translate(0);
+			transition: 0.3s cubic-bezier(0,.73,1,.17);
+		}
+		.clignote {
+			animation-duration: 0.8s;
+			animation-name: clignoter;
+			animation-iteration-count: infinite;
+			transition: none;
+		}
+		@keyframes clignoter {
+			0% {
+				opacity: 1;
+			}
+			40% {
+				opacity: 0;
+			}
+			100% {
+				opacity: 1;
+			}
+			
+		}
+		@media screen and(max-width:800px){
+			
+		}
+	</style>
+
+	{% if app.request.attributes.get('_route') == 'acceuil' %}
+		<script src="{{ asset('js/filter/filter.js') }}"></script>
+	{% endif %}
+
+
+	<div class="container" style="margin:auto ;">
+		<div class="container4" style="width:auto; margin:0;">
+			<nav aria-label="breadcrumb" class="fil">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item active" aria-current="page">Accueil</li>
+				</ol>
+			</nav>
+			<div class="totalFilter">
+
+				<div class="box" id="box1"></div>
+				<div class="formFilter box" id="box2">
+
+				<h3 class="text-center fw-bold "> filtre des oeuvres</h3>
+				<h5 class="text-center" > javascript vanilla</h5>
+				<p class="text-center fw-bold"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consectetur nesciunt voluptatum, officiis voluptates minima non et, quisquam blanditiis magni cum laudantium ipsam exercitationem fuga animi, reiciendis sequi. Impedit, est velit! </p>
+
+					<form class="formFilterOeuvre">
+
+
+						<select class="form-select" id="selectFilter" aria-label="Default select example">
+
+							<option value="1">digital</option>
+							<option value="2">peinture</option>
+						</select>
+						<div class="linefilter">
+							<label for="range1" class="form-label">prix minimum</label>
+							<input type="range" class="form-range rangePrice" id="range1" value="0" min="0" max="2000">
+							<span class="priceSpan">0</span>
+							<span>€</span>
+
+						</div>
+						<div class="linefilter">
+
+							<label for="range2" class="form-label ">prix maximum</label>
+							<input type="range" class="form-range rangePrice" id="range2" value="123" min="123" max="2000">
+							<span class="priceSpan">123
+							</span>
+							<span>€</span>
+
+						</div>
+
+
+						<div class="col-12 buttonFilter">
+							<button class="btn btn-primary" type="submit" data-path="{{ path('app_oeuvre_show', {id: 1}) }} " id="pathFilter">filtrer</button>
+						</div>
+					</form>
+
+				</div>
+				<div class="filter" id="filter">
+
+					<div class="cardFilter"></div>
+
+				</div>
+
+
+				<div class="titre">
+					<a href="{{path('artDigital')}} ">
+						<h3 class="colorYellow titleHome">art digital</h3>
+					</a>
+
+
+				</div>
+
+				<div class="box" id="box3"></div>
+			</div>
+			<p class="presentation">Travail de Facundo en numérique, tablette graphique. Il trouve des images lors de ses balades urbaines en Ile de France ou sur internet.</p>
+			<div class="oeuvre scroll">
+				{% for oeuvre in oeuvres  %}
+					{% if oeuvre.image %}
+						<div class="oeuvreSousImage">
+							<div class="totalus">
+								<div class="image1" style="width: 100%; ">
+
+
+									<a href=" {{ path('app_oeuvre_show', {'id': oeuvre.id}) }}">
+										<img src="{{ asset('images/oeuvre/' ~ oeuvre.image ) }}" alt="art digital de facundo varas street-art,portait paysage urbain hstoire" class="img300"></a>
+								</div>
+							</div>
+							<div class="sousImage">
+								<div class="titreSousImage">
+									<p class="colorYellow">{{oeuvre.titre}}
+									</p>
+								</div>
+								<div class="buttonSousImage">
+									<button>
+										<a href=" {{ path('app_oeuvre_show', {'id': oeuvre.id}) }}">
+											En savoir plus</a>
+									</button>
+								</div>
+							</div>
+						</div>
+					{% endif %}
+				{% endfor %}
+
+			</div>
+
+			{{ render(controller('App\\Controller\\OeuvresController::index')) }}
+
+
+			<div class="titre scroll">
+				<h3 class="colorYellow propo titleHome">à propos</h3>
+			</div>
+			<div class="apropoMoi scroll ">
+				<div class="moi">
+
+					<img src="{{asset('images/oeuvre/moi.png')}} " alt="portrait de Facundo	Varas">
+				</div>
+				<div class="apropo scroll " id="ancre">
+
+					<p>Né en 1980, Facundo roule sa bosse dans la région parisienne, qu'il 
+																																	trouve jolie mais un peu grise. Il y fait de multiples boulots qui 
+																																	l'entraînent vers les enfants puis la logistique d'une chocolaterie. . . 
+																																	Pendant ce temps formateur et enrichissant, il élabore, de ci de là, 
+																																	quelques peintures, inspirées par la mégalopole, avec plein de couleurs ! 
+																																	Autodidacte, il s'adonne au montage photo et, maintenant, à la peinture 
+																																	digitale. Facundo participera à plusieurs expositions personnelles et 
+																																	collectives ainsi qu'au fanzine L'encornée Synthétique du collectif 
+																																	d'artistes Du Bout Des Étangs où il s'impliquera pendant quelques belles 
+																																	années ! Neva est son premier 
+																																	album</p>
+					<p>
+						Facundo est développeur web en herbe et vous pouvez voir son travail
+						<a href="https://portfolio.varascundo.com/" target="_blank" class="clignote">ici</a>
+					</p>
+
+				</div>
+			</div>
+		</div>
+
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('pageAccueil2') }}
+			{{ encore_entry_script_tags('filter') }}
+		
+
+
+			<script>
+
+
+
+//*******************************
+const ratio = .1;
+const options = {
+root: null,
+rootMargin: '0px',
+threshold: ratio
+}
+const handleIntersect = function (entries, observer) {
+entries.forEach(function (entry) {
+if (entry.intersectionRatio > ratio) {
+console.log('visible')
+entry.target.classList.add("scroll-visible")
+observer.unobserve(entry.target)
+} else {
+console.log('invisible')
+}
+
+});
+// console.log('handleIntersect')
+
+};
+const observer = new IntersectionObserver(handleIntersect, options);
+document.querySelectorAll('.scroll').forEach(function (r) {
+observer.observe(r)
+});
+</script>
+
+								{% endblock %}
+			{% endblock %}
+
+

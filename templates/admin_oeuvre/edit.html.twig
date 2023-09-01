@@ -1,0 +1,109 @@
+{% extends "base.html.twig" %}
+
+
+{% block h4 %}Modification
+	{{ oeuvre.titre|capitalize }}
+{% endblock %}
+
+{% block body %}
+
+
+	<a class="btn btn-dark my-3" href="{{ path('app_admin_oeuvre_index') }}">Retour</a>
+
+
+	{# {% include "_flashes.html.twig" %} #}
+	<div class="Edit">
+		<div class="col-md-6 mx-auto" id="edit2">
+			{{ form_start(formEdit) }}
+
+			<div class="row">
+
+				<div class="col-md-6">
+					{{ form_row(formEdit.titre) }}
+				</div>
+
+				<div class="col-md-6">
+					{{ form_row(formEdit.stock) }}
+				</div>
+
+				<div class="col-md-6">
+					{{ form_row(formEdit.prix) }}
+				</div>
+
+
+			</div>
+
+			<div class="row">
+				<div class="col-md-6">
+					{{ form_row(formEdit.categorie) }}
+				</div>
+
+				<div class="col-md-6">
+					{{ form_row(formEdit.description) }}
+				</div>
+
+				<div class="col-md-6">
+					{{ form_row(formEdit.dimention) }}
+				</div>
+				<div>
+
+<div class="form-group">
+    {{ form_label(formEdit.matiere) }}
+    {{ form_widget(formEdit.matiere) }}
+</div>
+				
+	
+				
+				</div>
+
+
+			</div>
+
+		</div>
+
+
+		<div class="imageEdit">
+			{{ form_row(formEdit.imageUpdate) }}
+			<div id="zone" class="text-center">
+
+				{% if oeuvre.image %}
+					<img
+					src="{{ asset('images/oeuvre/' ~ oeuvre.image) }}" alt="" class="img300">
+					{# <a href="{{ path('produit_image_supprimer', {'id' : oeuvre.id })  }}" onclick="return confirm('Etes-vous sûr de vouloir supprimer cette image ?');"> 
+					                    </a> #}
+					<i class="text-danger" data-feather="trash-2"></i>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6 mx-auto hh">
+		<input type="submit" value="Modifier" class="btn btn-info col-12 mt-3">
+	</div>
+	{{ form_end(formEdit) }}
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+
+	<script>
+
+		$('#oeuvres_matieres').select2({placeholder: 'Sélectionner une matière'});
+
+
+let zone = document.getElementById('zone')
+function loadFile(event) {
+console.log("test");
+
+$("#zone").html("");
+let image = document.createElement("img");
+image.setAttribute("src", URL.createObjectURL(event.target.files[0]));
+image.setAttribute("class", "img300");
+
+zone.append(image);
+
+
+}
+	</script>
+{% endblock %}

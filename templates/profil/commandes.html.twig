@@ -1,0 +1,60 @@
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+<div style="height:100%">
+{% if commandes %}
+
+<div class="commandeContainer">
+        <nav aria-label="breadcrumb" class="fil ariane">
+             <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{path('acceuil')}}">Accueil</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Commandes</li>
+            </ol>
+        </nav>
+        {% for commande in commandes %}
+            <div class="commande">
+
+			     <h5> commande numero : {{ commande.id}} </h5>
+			     <h5>profil : {{commande.user.prenom}} </h5>
+			     <h5 >{{commande.montant}} </h5>
+			     <h5> commandé le : {{commande.dateAt|date('d/m/Y')}} </h5>
+
+			    <h5 class="colorRed" > 
+			    {% if commande.etat== 0 %}
+			    	"en cour de livraison"
+			    {% elseif  commande.etat== 1 %}
+                       "expedié"
+			    {% elseif  commande.etat== 2 %}
+			    	   "livré"
+			    {% endif %}
+			     </h5>
+
+			   {% for detail in commande.detailsCommande %}
+
+			       <div class="border-broder-danger-m-2-p-2">
+
+			            <h5>{{ detail.id}} </h5>
+			            <h5> titre oeuvre : {{ detail.oeuvre.titre}} </h5>
+			            <h5> prix : {{ detail.prix}}€ </h5>
+			            <h5>quantité commandé : {{ detail.quantity}} </h5>
+			            <h5> prix total de la comande : {{ detail.prix * detail.quantity}}€</h5>
+			 
+			 
+			        </div>
+				 
+			    {% endfor %}
+               
+
+			
+				
+            </div>
+		{% endfor %}
+
+    {% else %}
+	    <h1 style="text-align: center;margin-top:3rem;">vous n'avez pas de commandes</h1>
+	    <p style="text-align: center;" >merci</p>
+    {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends "base.html.twig" %}
+
+
+
+{% block title %}mon panier
+{% endblock %}
+
+
+{# {% block h1 %} #}
+           {# mon panier #}
+{# {% endblock %} #}
+
+{% block body %}
+ {# {% include "_flashes.html.twig" %} #}
+       <nav aria-label="breadcrumb" class="fil ariane">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{path('acceuil')}}">Accueil</a></li>
+    <li class="breadcrumb-item active" aria-current="page">mon panier</li>
+  </ol>
+       </nav>
+<div style="height:100%">
+  
+           <h3 style="text-align:center;margin:2rem" class="colorYellow">mon panier</h3>
+         {% if panier.id is defined and panier.id|length > 0 %}
+
+	      {% set size = panier.id|length - 1 %}
+	      {% for i in 0.. size %}
+
+     <div class="containerPanier">
+          <div class="imgPanier">
+                   {# {{ oeuvre.image }} #}
+               	<img src="{{ asset('images/oeuvre/' ~ panier.image[i] ) }}" alt="" class ="img400">
+          </div>
+
+           <div class="contenantPanier">
+                          {# {{ oeuvre.id }} #}
+                  <div class="contenantPanier1 tt">
+                   <h5>{{ panier.titre[i] }}</h5>
+                  </div>
+
+                   <div class="contenantPanier1">
+                      {% if panier.quantity[i]  %}
+	       		    <p> quantité :</p>
+                      <p> {{panier.quantity[i] }}</p>
+	       		  
+	       		   {% else %}
+	       			<span class="text-warning">indispo pour le moment</span>
+	       		    {% endif %}
+                   </div>
+
+                    <div class="contenantPanier1">
+	       		    <p>montant :</p>
+                       <p>{{panier.prix[i] * panier.quantity[i] }}€</p>
+                    </div>
+
+                    <div class="contenantPanie"> 
+	       		       <button  class="btn btn-danger"><a href="{{ path('panier_retirer',{'id': panier.id[i] }) }} ">suprimer </a></button> 
+                    </div> 
+
+            </div>
+	 </div>
+ 
+	    {% endfor %}
+
+	<div class="finPanier">
+
+          <div class="montantTotal">
+			<p><strong> montant total : {{montant}}€</strong></p>   
+	      </div>
+
+          <div class="butttonPanier">
+             <div class="supCommand">
+ 		        <a  href="{{ path('panier_vider')}} " class="btn btn-danger sup">vider le panier</a>
+             </div>
+             <div class="supCommand">
+            {% if app.user %}
+			    <a class="btn btn-success " href="{{ path('panier_payer')}} ">commander</a>
+		    {% else %}
+		
+              <h4 class="colorBlue2">Veuillez vous 
+              <a href="{{ path('app_login') }}">connecter</a>
+              ou vous 
+              <a href="{{ path('app_register') }}">inscrire</a> pour déposer votre message</h4>
+            {% endif %}
+             </div>
+	      </div>
+    
+    </div>
+
+       {% else %}
+            <h1 style="text-align:center;margin-top:3rem">votre panier est vide</h1>
+
+        {% endif %}   
+</div>	
+
+{% endblock %}
+  

@@ -1,0 +1,23 @@
+.Edit{
+    display: flex !important;
+    border: solid 1px white;
+    margin-left: 10rem;
+    margin-right: 10rem;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.imageEdit{
+    border: solid 1px white; 
+    margin-left: 5rem;
+}
+#edit2{
+    display: flex !important;
+    /* flex-direction: column; */
+}
+form .row{ 
+    /* border: solid 1px wheat; */
+    justify-content: center;
+    align-items: center;
+    margin: 3rem;
+   
+}

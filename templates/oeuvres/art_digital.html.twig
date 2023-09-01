@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+{% block meta %}
+
+{% endblock %}
+
+{% block body %}
+{% include "bandeauImg.html.twig" %}
+
+<div class="container">
+
+ <div class="container2">
+    <div class="container3">
+         <div class="container4">
+         
+         <nav aria-label="breadcrumb" class="fil">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{path('acceuil')}}">Accueil</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Art digital</li>
+  </ol>
+         </nav>
+
+            <div class="titre">
+                <h3 class="colorYellow">art digital</h3>
+            </div>
+             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam autem quasi labore omnis animi ipsam accusamus exercitationem! Vero, cupiditate debitis tempore, repellendus mollitia quam molestiae rem rerum incidunt laborum ratione?
+            Magnam deserunt debitis, consequuntur quam tenetur distinctio eaque, neque harum facilis .</p>
+            <div class="oeuvre2">
+              	 {% for oeuvre in oeuvres  %}
+              
+              			{% if oeuvre.image %}
+                <div class="image2">
+
+                    <a href=" {{ path('app_oeuvre_show', {'id': oeuvre.id}) }}">	<img src="{{ asset('images/oeuvre/' ~ oeuvre.image ) }}" alt="" class ="img300"></a>
+
+                      <div class="sousImage">
+                           <p > {% if oeuvre.description %}
+                           <p class="colorYellow">{{ oeuvre.titre}} </p>
+
+                                {% if oeuvre.description|length > 30 %}
+                                    {{ oeuvre.description|slice(0,10) }}...
+                                {% else %}
+                                    {{ oeuvre.description }}
+                                {% endif %}
+                           <p > <strong>{{oeuvre.prix}}€</strong></p>
+                                    <div class="buttonSousImage">
+                                    <button> <a href=" {{ path('app_oeuvre_show', {'id': oeuvre.id}) }}">voir plus</a> </button>
+                                    </div>
+                                {% endif %} 
+
+                           </p> 
+                      </div>
+                 </div>
+                     {% endif %}
+                     {% endfor %}  
+            </div>
+      </div>
+    </div>
+</div> 
+<div style="font-size:2rem; display:flex;justify-content:center;">
+                     {{knp_pagination_render(oeuvres) }}
+
+</div>
+
+
+{% endblock %}
