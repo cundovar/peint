@@ -71,9 +71,9 @@
 				</p>
 				<p>
 					Matière :
-					{% if oeuvre.oeuvreMatiere|length > 0 %}
-						{% for oeuvreMatiere in oeuvre.oeuvreMatiere %}
-							{{ oeuvreMatiere.matiere.nom|capitalize }}
+					{% if oeuvre.matiere|length > 0 %}
+						{% for oeuvreMatiere in oeuvre.matiere %}
+							{{ oeuvreMatiere.nom|capitalize }}
 							{% if not loop.last %},
 							{% endif %}
 						{% endfor %}
@@ -84,9 +84,7 @@
 				</p>
 			</div>
 
-			{# <div id="buton"> #}
-			{# <button class="buton"> <a href="{{path('app_panier',{'id':oeuvre.id} )}} ">ajouter au panier</a></button>/ #}
-			{# </div> #}
+		
 
 				<div class="panier"> <div class="text-center-col-md-3">
 					{% if oeuvre.stock %}
@@ -153,60 +151,60 @@
 		</div>
 
 		{# <div class="phpComment">
-								            <h3 >commentaire php</h3>
-								               
-								        {% if app.user %}
-								
-								            {{ form_start(formComment) }}
-								                {{ form_row(formComment.comment) }} 
-								                <input type="submit" value="envoyer" class="btn btn-success col-3 mt-3" > 
-								             {{ form_end(formComment) }}
-								
-								        {% else %}
-								            <p class="colorBlue2">Veuillez vous 
-								                <a href="{{ path('app_login') }}" class="colorRed">connecter</a>
-								             ou vous 
-								                <a href="{{ path('app_register') }} " class="colorRed">inscrire</a>
-								             pour déposer votre message</p>
-								        {% endif %}
-								
-								
-								
-								
-								               {% for commentaire in commentaires %}
-								            <div class="commentTotal">
-								
-								                <div >
-								                    
-								                    <div class="">
-								                        <p class="fst-italic">{{ commentaire.dateAt|date("d/m/Y H:i:s") }}</p>
-								                    </div>  
-								                    <br>
-								                    <div class="">
-								                        <p>{{ commentaire.user.prenom }} a ecrit...</p>
-								                    </div>
-								                    <br>
-								                </div>
-								                <div class="comment">
-								                    <p>{{ commentaire.comment }}</p>
-								                </div>
-								                <hr>
-								            </div>
-								        {% else %}
-								           <p class="text-info">Soyez le premier à laisser votre avis</label></p>
-								        {% endfor %}
-								            
-								
-								        {% for notification in app.flashes('success') %}
-								            <div class="text-center fst-italic text-success">
-								                {{ notification }}
-								            </div>
-								        {% endfor %} 
-								        {# {{form(formComment)}} #}
+										            <h3 >commentaire php</h3>
+										               
+										        {% if app.user %}
+										
+										            {{ form_start(formComment) }}
+										                {{ form_row(formComment.comment) }} 
+										                <input type="submit" value="envoyer" class="btn btn-success col-3 mt-3" > 
+										             {{ form_end(formComment) }}
+										
+										        {% else %}
+										            <p class="colorBlue2">Veuillez vous 
+										                <a href="{{ path('app_login') }}" class="colorRed">connecter</a>
+										             ou vous 
+										                <a href="{{ path('app_register') }} " class="colorRed">inscrire</a>
+										             pour déposer votre message</p>
+										        {% endif %}
+										
+										
+										
+										
+										               {% for commentaire in commentaires %}
+										            <div class="commentTotal">
+										
+										                <div >
+										                    
+										                    <div class="">
+										                        <p class="fst-italic">{{ commentaire.dateAt|date("d/m/Y H:i:s") }}</p>
+										                    </div>  
+										                    <br>
+										                    <div class="">
+										                        <p>{{ commentaire.user.prenom }} a ecrit...</p>
+										                    </div>
+										                    <br>
+										                </div>
+										                <div class="comment">
+										                    <p>{{ commentaire.comment }}</p>
+										                </div>
+										                <hr>
+										            </div>
+										        {% else %}
+										           <p class="text-info">Soyez le premier à laisser votre avis</label></p>
+										        {% endfor %}
+										            
+										
+										        {% for notification in app.flashes('success') %}
+										            <div class="text-center fst-italic text-success">
+										                {{ notification }}
+										            </div>
+										        {% endfor %} 
+										        {# {{form(formComment)}} #}
 
 		{# 
-							
-							        </div> #}
+									
+									        </div> #}
 	</div>
 
 

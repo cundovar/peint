@@ -40,155 +40,13 @@ class OeuvresRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Oeuvres[] Returns an array of Oeuvres objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('o')
-//            ->andWhere('o.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('o.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
 
-//    public function findOneBySomeField($value): ?Oeuvres
-//    {
-//        return $this->createQueryBuilder('o')
-//            ->andWhere('o.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
-
-// public function findCategorie($categorie)
-// {
-//     return $this->createQueryBuilder("p")
-//     ->leftJoin("p.categorie","c")
-//     ->andWhere("c.id=:categorie")
-//     ->setParameter("categorie",$categorie)
-//     ->getQuery()
-//     ->getResult()
-//       ; 
-// }
-
-
-
-// public function findFiltre(OeuvreFilter $filter)
-// {
-    
-//  $query=$this->createQueryBuilder("p")
-//  ->leftJoin("p.categorie","c")
- 
-
-// ;
-
-// if($filter->recherche)
-// {
-//     $query=$query
-//     ->andWhere("p.titre LIKE :recherche")
-//     ->orWhere("p.prix LIKE :recherche")
-//     ->orWhere("p.description LIKE :recherche")
-//     ->orWhere("c.nom LIKE :recherche")
-   
-//     ->setParameter("recherche","%".$filter->recherche."%")
-//     ;
-
-// }
-
-
-// if($filter->categories)
-// {
-//     $query=$query
-//     ->andWhere("c.id IN (:categories)")
-//     ->setParameter("categories",$filter->categories)
-//     ;
-// }
-
-// if($filter->min)
-// {
-//     $query=$query
-//     ->andWhere("p.prix >= :min")
-//     ->setParameter("min",$filter->min)
-//     ;
-// }
-
-// if($filter->max)
-// {
-//     $query=$query
-//     ->andWhere("p.prix >= :min")
-//     ->setParameter("max",$filter->max)
-//     ;
-// }
-
-// if($filter->order==1)
-// {
-//     $query=$query
-//     ->orderBy("p.prix", "ASC")
-//     ;
-// }
-
-// if($filter->order==2)
-// {
-//     $query=$query
-//     ->orderBy("p.prix", "DESC")
-//     ;
-// }
-// if($filter->order==3)
-// {
-//     $query=$query
-//     ->orderBy("p.prix", "DESC")
-//     ;
-// }
-// if($filter->order==4)
-// {
-//     $query=$query
-//     ->orderBy("p.prix", "ASC")
-//     ;
-// }
-
-
-// return $query
-// ->getQuery()
-// ->getResult()
-// ;
-
-
-
-
-// }
-
-
-// public function findSomeThing($recherche)
-//     {
-//         return $this->createQueryBuilder("p")
-//         ->leftJoin("p.categorie","c")
-  
-
-//         ->andWhere("p.titre LIKE :recherche")
-//         ->orWhere("p.prix LIKE :recherche")
-//         ->orWhere("p.description LIKE :recherche")
-       
-//         ->setParameter("recherche","%$recherche%")
-//         ->getQuery()
-//         ->getResult()
-//         ;
-
-
-
-
-// 
-// }
 public function findFiltre(OeuvreFilter $filter)
 {
     $query = $this->createQueryBuilder('p')
         ->leftJoin('p.categorie', 'c')
-        ->leftJoin('p.oeuvreMatiere', 'om')
-        ->leftJoin('om.matiere', 'mt');
+        ->leftJoin('p.matiere', 'm');
+        
     if ($filter->recherche) {
         $query = $query
             ->andWhere('p.titre LIKE :recherche')
@@ -199,15 +57,11 @@ public function findFiltre(OeuvreFilter $filter)
             ->setParameter('recherche', '%' . $filter->recherche . '%');
     }
 
-    // if ($filter->marques) {
-    //     $query = $query
-    //         ->andWhere('mq.id IN (:marques)')
-    //         ->setParameter('marques', $filter->marques);
-    // }
+   
 
     if ($filter->matieres) {
         $query = $query
-            ->andWhere('mt.id IN (:matieres)')
+            ->andWhere('c.id IN (:matieres)')
             ->setParameter('matieres', $filter->matieres);
     }
 
