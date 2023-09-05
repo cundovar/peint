@@ -10,3 +10,5 @@ api_commentaires:
 details_oeuvre:
     path: /oeuvres/{id}
     controller: App\Controller\OeuvresController 
+    
+

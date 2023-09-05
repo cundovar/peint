@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
+use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * @Route("/admin/oeuvre")
@@ -45,13 +45,12 @@ class AdminOeuvreController extends AbstractController
         ]);
 
         $form->handleRequest($request);
-        dump($request->request->all());
+     
         if ($form->isSubmitted() && $form->isValid()) {
 
             $oeuvre->setDateAt(new \DateTimeImmutable('now'));
 
-            // Pas besoin d'ajouter l'oeuvre ici car elle sera gérée par le cascade persist dans la relation
-            // $manager->persist($oeuvre);
+          
 
             $imageFile = $form->get('image')->getData();
             if ($imageFile) {
@@ -90,9 +89,9 @@ class AdminOeuvreController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="app_admin_oeuvre_edit", methods={"GET", "POST"})
+     * @Route("/{id}/edit", name="app_admin_oeuvre_edit")
      */
-    public function edit(Request $request, Oeuvres $oeuvre, OeuvresRepository $oeuvresRepository, MatiereRepository $matiereRepository, EntityManagerInterface $manager): Response
+    public function edit(Request $request, Oeuvres $oeuvre,EntityManagerInterface $manager): Response
     {
 
 
@@ -105,7 +104,7 @@ class AdminOeuvreController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $oeuvresRepository->add($oeuvre, true);
+        
 
         
 
@@ -141,7 +140,7 @@ class AdminOeuvreController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_admin_oeuvre_delete", methods={"POST"})
+     * @Route("/{id}", name="app_admin_oeuvre_delete")
      */
     public function delete(Request $request, Oeuvres $oeuvre, OeuvresRepository $oeuvresRepository, EntityManagerInterface $entityManager): Response
     {
@@ -176,12 +175,17 @@ class AdminOeuvreController extends AbstractController
     }
 
     /**
-     * @Route("/image/supprimer/{id}", name="oeuvre_image_supprimer")
+     * @Route("/{id}/sup", name="oeuvre_image_supprimer")
      */
-    public function oeuvre_image_supprime(Oeuvres $oeuvre, EntityManagerInterface $manager)
-    {
-        unlink($this->getParameter('imageOeuvre') . "/" . $oeuvre->getImage());
+    public function oeuvre_image_supprimer(Oeuvres $oeuvre, EntityManagerInterface $manager)
+    {     
+        $imagePath=$this->getParameter('imageOeuvre') . "/" . $oeuvre->getImage();
+        if(file_exists($imagePath)){
+              unlink($imagePath);
+        }
+
         $oeuvre->setImage(NULL);
+      
         $manager->persist($oeuvre);
         $manager->flush();
         // $this->addFlash("success", "L'image du produit N°" . $oeuvre->getId() . " a bien été supprimée");

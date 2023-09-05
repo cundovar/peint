@@ -125,7 +125,7 @@ class Oeuvres2Type extends AbstractType
             $builder->add('imageUpdate', FileType::class, [
                 "required" => false,
                 "mapped" => false, // qui n'est pas dans l'entity
-                "data_class" => null,
+            
                 "attr" => [
                     'onchange' => "loadFile(event)"
                 ]
@@ -143,4 +143,5 @@ class Oeuvres2Type extends AbstractType
           
         ]);
     }
+    
 }

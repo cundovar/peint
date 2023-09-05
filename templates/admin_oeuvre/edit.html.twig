@@ -47,13 +47,12 @@
 				</div>
 				<div>
 
-<div class="form-group">
-    {{ form_label(formEdit.matiere) }}
-    {{ form_widget(formEdit.matiere) }}
-</div>
-				
-	
-				
+					<div class="form-group">
+						{{ form_label(formEdit.matiere) }}
+						{{ form_widget(formEdit.matiere) }}
+					</div>
+
+
 				</div>
 
 
@@ -64,14 +63,17 @@
 
 		<div class="imageEdit">
 			{{ form_row(formEdit.imageUpdate) }}
-			<div id="zone" class="text-center">
+			<div id="zone" class="text-center" style="display:flex; flex-direction:column ;">
 
 				{% if oeuvre.image %}
-					<img
-					src="{{ asset('images/oeuvre/' ~ oeuvre.image) }}" alt="" class="img300">
-					{# <a href="{{ path('produit_image_supprimer', {'id' : oeuvre.id })  }}" onclick="return confirm('Etes-vous sûr de vouloir supprimer cette image ?');"> 
-					                    </a> #}
-					<i class="text-danger" data-feather="trash-2"></i>
+					<img src="{{ asset('images/oeuvre/' ~ oeuvre.image) }}" alt="" class="img300">
+					<a href="{{ path('oeuvre_image_supprimer', {'id' : oeuvre.id }) }}" onclick="return confirm('Etes-vous sûr de vouloir supprimer cette image ?');">
+					     <i class="text-danger" data-feather="trash-2">sup</i>
+					</a>
+
+					        <a href="#" id="deleteImageLink" onclick="deleteImage(); return false;">Supprimer l'image</a>
+
+
 				{% endif %}
 			</div>
 		</div>
@@ -89,11 +91,21 @@
 
 	<script>
 
-		$('#oeuvres_matieres').select2({placeholder: 'Sélectionner une matière'});
+	  function deleteImage() {
+        if (confirm("Êtes-vous sûr de vouloir supprimer cette image ?")) {
+            // Supprimez l'image actuelle de l'affichage
+            $("#currentImage").remove();
 
+            // Réinitialisez le champ de téléchargement de fichier pour supprimer l'image lors de la soumission
+            $("input[name='{{ formEdit.imageUpdate.vars.full_name }}']").val(null);
+        }
+    }
 
-let zone = document.getElementById('zone')
-function loadFile(event) {
+	 
+
+		function loadFile(event) {
+let zone = document.getElementById('zone');
+
 console.log("test");
 
 $("#zone").html("");
@@ -101,8 +113,9 @@ let image = document.createElement("img");
 image.setAttribute("src", URL.createObjectURL(event.target.files[0]));
 image.setAttribute("class", "img300");
 
-zone.append(image);
+zone.innerHTML = "";
 
+zone.appendChild(image); 
 
 }
 	</script>

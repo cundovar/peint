@@ -21,3 +21,7 @@ form .row{
     margin: 3rem;
    
 }
+.fichier_image{
+    display: flex;
+    flex-direction: column;
+}
