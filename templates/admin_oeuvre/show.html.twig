@@ -22,7 +22,9 @@
             </tr>
             <tr>
                 <th>Image</th>
-                <td>{{ oeuvre.image }}</td>
+                <td>{{ oeuvre.image }}
+                	<img src="{{ asset('images/oeuvre/' ~ oeuvre.image ) }}" alt="peinture de facundo varas street-art,portait paysage urbain hstoire" class="img80">
+                </td>
             </tr>
             <tr>
                 <th>Stock</th>
@@ -39,7 +41,7 @@
                         
                            {% if oeuvre.matiere|length > 0 %}
         <ul>
-            {% for oeuvreMatiere in oeuvre.matt %}
+            {% for oeuvreMatiere in oeuvre.matiere %}
                 <li>{{ oeuvreMatiere.nom|capitalize }}</li>
             {% endfor %}
         </ul>
