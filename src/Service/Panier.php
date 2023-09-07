@@ -27,7 +27,7 @@ class Panier
     }
 
 
-    //creer l'achitecture du panier dans une fonction
+
     public function creation()
     {
         $array=[
@@ -45,35 +45,26 @@ class Panier
 
 
 
-    public function add($id,$prix,$quantity,$titre,$image)// il faudra mettre 4 arguments dans la function add
+    public function add($id,$prix,$quantity,$titre,$image)
     {
         $panier=$this->session->get('panier');
-        //on appelle l'objet session on pren element s'appelant panier dans ma session
+     
         if(empty($panier))
        
         {
-            $panier=$this->creation();// on appele la function creation
-            // pour appeler un function $this->
+            $panier=$this->creation();
+    
             $this->session->set('panier',$panier);                  
             
         }
-        
-        // dans la sesion il y a forcement le tableau panier vide ou non avec la condition if
-        
-        /*
-        function predefini php:
-        array_search
-        ->permet de rechercher une valeur dans le tableau
-        ==>retournr ma POSITION dans le tableau 
-        ==>retourne rien s'il nexiste pas 
-        
-        2arguments :
-        -valeur recherché
-        -tableau
-        */
-        
+     
+        // array_splice(1:valeur recherché, 2: dans quel tableau)
+        //  recherche idoeuvre dans panier renvoir true ou false 
+        // $this->session->set('panier") recupère le panier dans session apres cration si id oeuvre est dans ce panier alors $panier ['quantity ][$positio_search]+-=$quantity cela veut dire : augmenter la quantité du panier 
+        //tableau $panier tableau quantité et id + quantité nouevlle valeur
+        //
         $position_search=array_search($id,$panier['id'] );
-        if($position_search !== false)// si le produit existe dans le panier
+        if($position_search !== false)
         {
             $panier['quantity'][$position_search]+=$quantity;
             
@@ -81,7 +72,7 @@ class Panier
 
          }
 
-         else//et si le produit nexiste pas dans le panier 
+         else
          {
 
             $panier['id'][]=$id;
@@ -98,39 +89,18 @@ class Panier
 
     public function vider()
     {
-            // $this->session->remove("panier");// supremier le tableau panier de la session d=redevient null
+           
         $panier=$this->creation();
-        $this->session->set('panier',$panier);// ou alors
+        $this->session->set('panier',$panier);
     }
 
-    public function remove($id)// pour suprimer un element du panier
+    public function remove($id)
     {
                 $panier=$this->session->get('panier');
 
-                $position=array_search($id,$panier['id'] );// position dans le tableau
+                $position=array_search($id,$panier['id'] );
 
-            // dd($position);// affiche 1 car en position 1 dans le tableau si on supp la 1er ligne....
-
-            /* fonction predefini php
-            array_splice
-            ->permet d'effacer une portion un ou des elements dans un tableau
-            3 arguments:
-
-            1 tableau
-            2 la position
-            3le nombres d"elements à supprimer 1 cest une ligne si on ecrti 2 alors ces't deux ligne a partir de la position selectionné
-        $tableau = ["id",]
-
-        for($i=0;$i<4;$++)
-        {
-        array_splice($panier['$tableau'],$position,1 );
-
-        }
-
-
-
-       
-       */
+          
 
        array_splice($panier['id'],$position,1 );
        array_splice($panier['titre'],$position,1 );
@@ -147,7 +117,7 @@ class Panier
 
     public function montant()
     {
-      
+    
         $montant=0;
         $panier=$this->session->get('panier');
         if (isset($panier['id'])){
@@ -161,8 +131,7 @@ class Panier
     
             return $montant;
         }
-       
-         //dd($size);
+   
 
        
     }
@@ -173,7 +142,7 @@ class Panier
     public function verification()
     {
 
-        $panier = $this->session->get("panier") ;//on recuprer de la session notre panier
+        $panier = $this->session->get("panier") ;
         $size = count($panier['id'] );
 
         for($i=0; $i < $size;$i++)
@@ -224,9 +193,9 @@ class Panier
         {
             $commande=new Commande;
             $commande->setUser($user);
-            // $commande->setMontant($this->montant());
+         
             $commande->setDateAt(new \DateTimeImmutable('now'));
-            $commande->setEtat(0);// 0=en cours de tratement; 1 expedié;2 livré
+            $commande->setEtat(0);
 
             $this->manager->persist($commande);
             $this->manager->flush();

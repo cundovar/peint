@@ -80,11 +80,11 @@ class AdminOeuvreController extends AbstractController
     /**
      * @Route("/{id}", name="app_admin_oeuvre_show", methods={"GET"})
      */
-    public function show(Oeuvres $oeuvre, OeuvresRepository $oeuvresRepository): Response
+    public function show(Oeuvres $oeuvre): Response
     {
         return $this->render('admin_oeuvre/show.html.twig', [
             'oeuvre' => $oeuvre,
-            // 'oeuvre' => $oeuvresRepository->findOneById(),
+        
         ]);
     }
 

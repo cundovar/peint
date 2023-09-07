@@ -26,10 +26,7 @@ class PanierController extends AbstractController
  */
 public function index(SessionInterface $session, Panier $panier):Response
 {
-    // dump($session->get('panier'));
-
-
-    // $panier->verification();
+  
 
     $panierSession = $session->get('panier');
 
