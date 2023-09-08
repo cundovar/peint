@@ -24,8 +24,9 @@
          {% if panier.id is defined and panier.id|length > 0 %}
 
 	      {% set size = panier.id|length - 1 %}
+{# la  variable est defiini par la longuer du panier.id #}
 	      {% for i in 0.. size %}
-
+         {# itère de 0 jusqu'a side #}
      <div class="containerPanier">
           <div class="imgPanier">
                    {# {{ oeuvre.image }} #}
