@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\Response as TestResponse;
 use App\Entity\Oeuvres;
 use App\Form\Oeuvres2Type;
 use App\filter\OeuvreFilter;
@@ -26,7 +27,7 @@ class OeuvresController extends AbstractController
     /**
      * @Route("/oeuvres/", name="app_oeuvres_index", methods={"GET","POST"})
      */
-    public function index(OeuvresRepository $oeuvresRepository): Response
+    public function index(OeuvresRepository $oeuvresRepository):Response
     {
         $oeuvre=$oeuvresRepository->findByCategorie(2);
             
