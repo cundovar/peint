@@ -26,20 +26,15 @@ class AppFixtures extends Fixture
         $commentaire = new Commentaire();
         $commentaire->setComment('Ceci est un commentaire.');
         $commentaire->setDateAt(new \DateTimeImmutable());
-        $commentaire->setOeuvre($product); // Assurez-vous d'associer le commentaire à l'œuvre
+        $commentaire->setOeuvre($product); 
         
-        // Associez l'utilisateur qui a laissé le commentaire en utilisant l'un des utilisateurs factices
+      
         $user = $manager->getRepository(User::class)->findOneBy(['email' => 'user1@example.com']);
         if ($user) {
             $commentaire->setUser($user);
         }
         
         $manager->persist($commentaire);
-
-
-
-        
-
         $manager->flush();
 
         

@@ -12,8 +12,6 @@ class AdminOeuvreControllerTest extends WebTestCase
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/admin/oeuvre/new');
-
-  
         $this->assertResponseIsSuccessful();
 
  
@@ -43,4 +41,34 @@ class AdminOeuvreControllerTest extends WebTestCase
  
 
     }
-}
+
+    public function testEdit()
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/admin/oeuvre/8/edit');
+        $this->assertResponseIsSuccessful();
+    
+        $formData = [
+            'Oeuvres2Type' => [
+                'titre' => 'Nouveau titre',
+                'prix' => 200,
+                'stock' => 2,
+                'categorie' => 1,
+                'description' => 'Description ',
+                'matiere' => [2],
+                'dimention' => 'Dimensions ',
+              
+                
+            ],
+        ];
+        
+       
+        $form = $crawler->selectButton('Modifier')->form();
+        $client->submit($form, $formData);
+    
+      
+    
+      
+        $this->assertResponseRedirects('/admin/oeuvre');
+    }
+}    

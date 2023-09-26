@@ -61,9 +61,6 @@ class AdminOeuvreController extends AbstractController
                 );
                 $oeuvre->setImage($nomImage);
             }
-
-        
-
             $manager->persist($oeuvre);
             $manager->flush();
             $this->addFlash("success", "Le produit N°" .  $oeuvre->getId()  .  " a bien été ajouté");

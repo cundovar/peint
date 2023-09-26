@@ -13,7 +13,7 @@ class UserFixtures extends Fixture
 
         foreach ($usernames as $username) {
             $user = new User();
-            $user->setEmail($username . '@example.com'); // Utilisation d'un nom d'utilisateur pour générer des e-mails uniques
+            $user->setEmail($username . '@example.com');
             $user->setPassword('123456');
             $manager->persist($user);
         }
